@@ -134,6 +134,17 @@ set(XTENSOR_FFTW_HEADERS
         ${XTENSOR_FFTW_INCLUDE_DIR}/xtensor-fftw/xtensor-fftw_config.hpp
 )
 
+#---------------------------------------- build (jtm)
+add_library(xtensor-fftw INTERFACE)
+
+message(STATUS "XTENSOR_FFTW_INCLUDE_DIR: ${XTENSOR_FFTW_INCLUDE_DIR}")
+message(STATUS "FFTW_LIBRARIES: ${FFTW_LIBRARIES}")
+target_include_directories(xtensor-fftw
+  INTERFACE
+    $<BUILD_INTERFACE:${XTENSOR_FFTW_INCLUDE_DIR}>
+    $<INSTALL_INTERFACE:include>)
+target_link_libraries(xtensor-fftw INTERFACE ${FFTW_LIBRARIES})
+
 #--------------------------------------- tests
 if(DEFAULT_COLUMN_MAJOR)
     add_definitions(-DDEFAULT_LAYOUT=layout_type::column_major)
