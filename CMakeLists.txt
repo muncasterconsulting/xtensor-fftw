@@ -137,8 +137,10 @@ set(XTENSOR_FFTW_HEADERS
 #---------------------------------------- build (jtm)
 add_library(xtensor-fftw INTERFACE)
 
+message(STATUS "FFTW_INCLUDE_DIRS: ${FFTW_INCLUDE_DIRS}")
 message(STATUS "XTENSOR_FFTW_INCLUDE_DIR: ${XTENSOR_FFTW_INCLUDE_DIR}")
 message(STATUS "FFTW_LIBRARIES: ${FFTW_LIBRARIES}")
+target_include_directories(xtensor-fftw INTERFACE ${FFTW_INCLUDE_DIRS})
 target_include_directories(xtensor-fftw
   INTERFACE
     $<BUILD_INTERFACE:${XTENSOR_FFTW_INCLUDE_DIR}>
